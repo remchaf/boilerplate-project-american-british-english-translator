@@ -27,7 +27,12 @@ module.exports = function (app) {
       });
       return;
     } else {
-      res.json({});
+      let translation = translator(text);
+      if (translation == text) {
+        translation = "Everything looks good to me!";
+      }
+
+      res.json(translation);
       return;
     }
   });
