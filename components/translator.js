@@ -40,8 +40,7 @@ class Translator {
   translationFromObject(_str, _obj) {
     for (const key in _obj) {
       const regex = new RegExp(`${key}\\s\|${key}\\.`, "gi");
-      const regX = new RegExp(key, "gi")
-      // console.log(regex, "string: " + _str);
+      const regX = new RegExp(key, "gi");
       if (regex.test(_str)) {
         _str = _str.replace(
           regX,
@@ -51,37 +50,6 @@ class Translator {
     }
     return _str;
   }
-
-  // translate(STRING, locale) {
-  //   let stringInput = "".concat(STRING);
-  //   if (/\.$/.test(stringInput)) {
-  //     const str1 = stringInput.slice(0, stringInput.length - 1);
-  //     return this.translate(str1, locale) + ".";
-  //   }
-  //   const array = stringInput.split(" ");
-  //   const args =
-  //     locale == "american-to-british"
-  //       ? [americanToBritishSpelling, americanToBritishTitles, americanOnly]
-  //       : [britishToAmericanSpelling, britishToAmericanTitles, britishOnly];
-  //   let result = array.reduce((string, str) => {
-  //     for (let i = 0; i < args.length; i++) {
-  //       const wordsObject = args[i];
-  //       if (wordsObject[str.toLowerCase()]) {
-  //         string = string.concat(
-  //           " <span class='highlight'>" +
-  //             wordsObject[str.toLowerCase()] +
-  //             "</span>"
-  //         );
-  //         return string;
-  //       }
-  //     }
-
-  //     string = string.concat(" " + str);
-  //     return string;
-  //   }, "");
-
-  //   return result.trim();
-  // }
 
   translateAmericanToBritish(string) {
     let _STRING = "".concat(string);
@@ -104,7 +72,6 @@ class Translator {
     _STRING = this.translationFromObject(_STRING, britishToAmericanTitles);
     _STRING = this.translationFromObject(_STRING, britishOnly);
 
-    
     if (/\d+\.\d+/.test(_STRING)) {
       _STRING = _STRING.replace(
         /(\d+)\.(\d+)/,
@@ -118,8 +85,7 @@ class Translator {
 // const trans = new Translator();
 
 // console.log(
-//   trans.translateBritishToAmerican("Tea time is usually around 4 or 4.30.")
+//   trans._(trans.translateBritishToAmerican("tea time is usually around 4 or 4.30."))
 // );
-
 
 module.exports = Translator;

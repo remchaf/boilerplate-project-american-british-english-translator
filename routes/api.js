@@ -4,11 +4,14 @@ const Translator = require("../components/translator.js");
 
 module.exports = function (app) {
   const translator = new Translator();
+  const translateToBrithish = translator.translateAmericanToBritish;
+  const translateToAmerican = translator.translateBritishToAmerican;
+  const _ = translator._;
 
   app.route("/api/translate").post((req, res) => {
     const { text, locale } = req.body;
 
-    if (!text || !locale) {
+    if (text == undefined || locale == undefined) {
       res.json({
         error: "Required field(s) missing",
       });
@@ -27,12 +30,19 @@ module.exports = function (app) {
       });
       return;
     } else {
-      let translation = translator(text);
+      let translation =
+        locale == "american-to-british"
+          ? translateToBrithish(text)
+          : translateToAmerican(text);
       if (translation == text) {
-        translation = "Everything looks good to me!";
+        res.json({
+          text: text,
+          translation: "Everything looks good to me!",
+        });
+        return;
       }
 
-      res.json(translation);
+      res.json({ text: text, translation: _(translation) });
       return;
     }
   });

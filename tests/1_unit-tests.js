@@ -176,7 +176,7 @@ suite("Unit Tests", () => {
       done();
     });
   });
-  
+
   suite("Highlighted in translation", () => {
     const highlighted = (_string) => {
       const regex = /<span class=\'highlight\'>(\w+\W*\w+)<\/span>/g;
