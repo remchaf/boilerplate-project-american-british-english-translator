@@ -44,7 +44,7 @@ class Translator {
       if (regex.test(_str)) {
         _str = _str.replace(
           regX,
-          `<span class='highlight'>${_obj[key]}</span>`
+          `<span class="highlight">${_obj[key]}</span>`
         );
       }
     }
@@ -60,7 +60,7 @@ class Translator {
     if (/\d+:\d+/.test(_STRING)) {
       _STRING = _STRING.replace(
         /(\d+):(\d+)/,
-        "<span class='highlight'>$1.$2</span>"
+        '<span class="highlight">$1.$2</span>'
       );
     }
     return _STRING;
@@ -75,17 +75,11 @@ class Translator {
     if (/\d+\.\d+/.test(_STRING)) {
       _STRING = _STRING.replace(
         /(\d+)\.(\d+)/,
-        "<span class='highlight'>$1:$2</span>"
+        '<span class="highlight">$1:$2</span>'
       );
     }
     return _STRING;
   }
 }
-
-// const trans = new Translator();
-
-// console.log(
-//   trans._(trans.translateBritishToAmerican("tea time is usually around 4 or 4.30."))
-// );
 
 module.exports = Translator;
